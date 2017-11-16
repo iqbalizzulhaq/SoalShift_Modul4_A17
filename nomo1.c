@@ -79,6 +79,8 @@ static int xmp_read(const char *path, char *buf, size_t size, off_t offset,
 	res = pread(fd, buf, size, offset);
 	if (res == -1)
 		res = -errno;
+	
+	if(strmp(fd,*.txt)==0){printf("pesan eror");}
 
 	close(fd);
 	return res;
