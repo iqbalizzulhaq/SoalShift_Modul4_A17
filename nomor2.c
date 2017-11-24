@@ -14,7 +14,7 @@ int cek (const char *nama)
 {
 	int x = strlen (nama);
 	char file[100];
-	strcpy(file, nama+x-4);
+	strcpy(file, nama+x-4);	//ekstensi belakang
 	if (strcmp(file,".txt")==0 || strcmp(file,".pdf")==0 || strcmp(file,".doc")==0)
 		return 1;
 	else
@@ -84,6 +84,14 @@ static int xmp_read(const char *path, char *buf, size_t size, off_t offset,
 		char npath[1000];
 		sprintf(npath, "%s.ditandai", fpath);
 		rename(fpath, npath);
+
+		if (opendir(fpath) == NULL)
+			system("mkdir /home/asus/Documents/rahasia");
+		char command[1000];
+		sprintf(command, "chmod 000 %s", npath);
+		system(command);
+		sprintf(command, "mv %s /home/asus/Documents/rahasia", npath);
+		system(command);
 
 		system("zenity --error --text=\"Terjadi Kesalahan! File berisi konten berbahaya.\n\" --title=\"Warning!\"");
 
